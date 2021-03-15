@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
+
+
+.modalCreate{
+    .ant-modal-footer {
+        text-align: center!important;
+    }
+}
+
+.productList{
+    nz-card{
+        height: 350px;
+        margin-bottom: 10px;
+    }
+    .ant-card-meta-description{
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.modalProductDetails{
+    width: 95%!important;
+
+    .ant-modal-footer{
+        display: none;
+    }
+}

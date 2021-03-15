@@ -1,0 +1,39 @@
+.imgProduct{
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.contentLeft{
+    .contentTitle{
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .contentImg{
+        text-align: center;
+        img{
+            max-height: 300px;
+            object-fit: contain;
+        }
+    }
+}
+
+.contentRigth{
+    .contentDescription{
+        text-align: left;
+        font-size: 14px;
+        max-height: 300px;
+        overflow-y: scroll;
+        margin: 25px 15px 15px 15px;
+        white-space: break-spaces;
+    }
+}
+
+.contentButtons{
+    text-align: center;
+    button:hover{
+        background: #4bea4b;
+        color: white!important;
+    }
+}

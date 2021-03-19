@@ -1,5 +1,5 @@
 <div nz-row class="productList cart">
-    <div nz-col nzSpan="24" nzSm="8" nzMd="8" nzXs="24" class="button-order" *ngIf="products.length > 0">
+    <div nz-col nzSpan="24" class="button-order" *ngIf="products.length > 0">
         <div nz-row class="complete-order">
             <div nz-col nzSpan="6">
                 <button nz-button nzType="dashed" nzShape="round" nzSize="large" [nzLoading]="isOkLoading" (click)="completeOrder()"><i nz-icon nzType="check-circle" nzTheme="outline"></i>Procesar compra</button>

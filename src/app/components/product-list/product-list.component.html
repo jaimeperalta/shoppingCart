@@ -1,5 +1,5 @@
 <div nz-row class="productList">
-    <div nz-col nzSpan="6" nzSm="8" nzMd="8" nzXs="24" class="content-list" *ngFor="let product of products" (click)="showModal(product)">
+    <div nz-col nzSpan="6" nzSm="8" nzMd="6" nzXs="24" class="content-list" *ngFor="let product of products" (click)="showModal(product)">
         <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate" class="card-container">
             <nz-card-meta nzTitle="{{product.name}}" nzDescription="{{product.description}}"></nz-card-meta>
         </nz-card>

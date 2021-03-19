@@ -1,6 +1,6 @@
 <div nz-row class="productList">
-    <div nz-col nzSpan="6" *ngFor="let product of products" (click)="showModal(product)">
-        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+    <div nz-col nzSpan="6" nzSm="8" nzMd="8" nzXs="24" class="content-list" *ngFor="let product of products" (click)="showModal(product)">
+        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate" class="card-container">
             <nz-card-meta nzTitle="{{product.name}}" nzDescription="{{product.description}}"></nz-card-meta>
         </nz-card>
         <ng-template #coverTemplate>
@@ -38,7 +38,9 @@
                 <p>{{productDetails.description}}</p>
             </div>
             <div nz-col nzSpan="24" class="contentButtons"> 
-                <button (click)="add()" nz-button nzType="dashed" nzSize="large" nzShape="round"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i>Agregar al carrito</button>
+                <button (click)="add()" [nzLoading]="isOkLoading" nz-button nzType="dashed" nzSize="large" nzShape="round">
+                    <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>Agregar al carrito
+                </button>
             </div>
         </div>
     </div>

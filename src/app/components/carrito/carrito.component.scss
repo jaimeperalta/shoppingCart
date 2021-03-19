@@ -1,0 +1,23 @@
+.options-cart{
+    padding: 15px;
+    div{
+        text-align: center;
+    }
+}
+
+.complete-order{
+    flex-flow: row-reverse;
+    padding-bottom: 25px;
+    div{
+        text-align: center;
+        button:hover, button:focus{
+            color:green!important;
+            border-color:green!important;
+        }
+    }
+}
+
+.no-cart{
+    text-align: center;
+    font-size: 20px;
+}

@@ -1,0 +1,45 @@
+:host{
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background: #fff;
+}
+.header{
+    width: 100%;
+}
+.header-container{
+    padding-top: 20px;
+    .title{
+        text-align: center;
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            font-style: italic;
+            font-family: cursive;
+            color: darkblue;
+            letter-spacing: 10px;
+        }
+    }
+}
+
+.options{
+    ul{
+        display: flex;
+        flex-flow: row-reverse;
+    }
+}
+
+.imgPreview{
+    text-align: center;
+    padding: 15px;
+}
+
+@media (max-width:600px){
+    .options{
+        ul{
+            justify-content: center;
+            flex-flow: row-reverse wrap;
+        }
+    }
+}

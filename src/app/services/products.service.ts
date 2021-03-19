@@ -12,7 +12,6 @@ export class ProductsService {
   ) { }
 
    createProduct(product:Product){
-    console.log(product);
     return new Promise<{status:string,id?:string}>(async (resolve)=>{
       let upload = await this.uploadImage(product.image);
       if(upload.status == "success"){
@@ -26,16 +25,18 @@ export class ProductsService {
 
   insertProduct(product:Product,id:string,url:string,uid:string){
      product.image = url;
+     let fecha = +new Date();
     return new Promise<{status:string}>((resolve)=>{
       firebase.firestore().collection("products").doc(id).set({
        ...product,
+       fecha,
+       id,
        uid
       })
       .then(()=>{
         resolve({status:"success"})
       })
       .catch((e)=>{
-        console.log(e)
         resolve({status:"fail"})
       })
     })
@@ -44,14 +45,11 @@ export class ProductsService {
   uploadImage(image:string){
     return new Promise<{status:string,id:string,url?:string}>((resolve)=>{
       let id = firebase.firestore().collection("products").doc().id;
-      console.log(id);
       let storageRef = firebase.storage().ref(`images/products/${id}`);
   
       storageRef.putString(image,'data_url')
       .then(async (snapshot) =>{
-        console.log('Uploaded a data_url string! ');
         let url = await storageRef.getDownloadURL();
-        console.log("la url ",url);
         resolve({status:"success",id, url})
       })
       .catch((e)=>{
@@ -63,9 +61,9 @@ export class ProductsService {
   getProducts(){
     return new Promise<Array<Product>>((resolve)=>{
       firebase.firestore().collection("products")
+      .orderBy("fecha", "desc")
       .get()
       .then((res)=>{
-        console.log(res);
         if(res.empty)resolve([])
         else {
           let products:Array<Product> = res.docs.map((doc:any) =>{ 
@@ -75,7 +73,6 @@ export class ProductsService {
         }
       })
       .catch((e)=>{
-        console.log(e);
         resolve([]);
       })
     })

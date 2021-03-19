@@ -8,6 +8,9 @@
 }
 
 .productList{
+    margin-top: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
     nz-card{
         height: 350px;
         margin-bottom: 10px;
@@ -19,6 +22,28 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .card-container{
+        overflow: hidden;
+    }
+    
+    .imgProduct{
+        height: 200px;
+        object-fit: contain;
+        transition: transform 2s;
+    }
+    
+    .imgProduct:hover{
+        transform: scale(1.2);
+    }
+    
+    
+}
+
+.productList.cart{
+    nz-card{
+        height: 370px;
+    }
 }
 
 .modalProductDetails{
@@ -26,5 +51,59 @@
 
     .ant-modal-footer{
         display: none;
+    }
+
+    .contentLeft{
+        .contentTitle{
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .contentImg{
+            text-align: center;
+            img{
+                max-height: 300px;
+                object-fit: contain;
+            }
+        }
+    }
+    
+    .contentRigth{
+        .contentDescription{
+            text-align: left;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: scroll;
+            margin: 25px 15px 15px 15px;
+            white-space: break-spaces;
+        }
+    }
+    
+    .contentButtons{
+        text-align: center;
+        button:hover{
+            background: #4bea4b;
+            color: white!important;
+        }
+    }
+}
+
+@media (max-width:600px){
+    .productList{
+        margin-top: 50%;
+        .content-list{
+            justify-content: center;
+            display: flex;
+        }
+    }
+
+    .productList.cart{
+        .button-order{
+            display: flex;
+            justify-content: center;
+        }
+        .complete-order{
+            flex-flow: unset;
+        }
     }
 }

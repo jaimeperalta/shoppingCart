@@ -5,4 +5,6 @@ export interface Product {
     image:string;
     uid?:string;
     key?:string;
+    quantity?:number;
+    product_cart_id?:string;
 }

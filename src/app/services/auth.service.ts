@@ -9,6 +9,7 @@ class user {
   displayName:string = "";
   email:string = "";
   uid:string = "";
+  photoURL:string = "";
 }
 
 export class AuthService {
@@ -16,13 +17,18 @@ export class AuthService {
   constructor() { }
 
   login(){
-      let provider = new firebase.auth.GoogleAuthProvider();
-      return new Promise((resolve)=>{
+    return new Promise((resolve)=>{
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        let provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({
+          'prompt': 'select_account'
+        });
         firebase.auth().signInWithPopup(provider).then(async (result:any)=>{
           let validate = await this.validateUser(result.user);
           if(validate.status == "userExist"){
             resolve("success");
-            localStorage.setItem("user",JSON.stringify({name:result.user.displayName,email:result.user.email,uid:result.user.uid}))
+            localStorage.setItem("user",JSON.stringify({name:result.user.displayName,email:result.user.email,uid:result.user.uid,photo:result.user.photoURL,isLoged:true}))
           }
           else resolve("noUser");
         })
@@ -31,24 +37,11 @@ export class AuthService {
           console.log(e);
         });
       })
-      
-  }
-
-  signup(){
-     return new Promise((resolve)=>{
-       let provider = new firebase.auth.GoogleAuthProvider();
-       firebase.auth().signInWithPopup(provider)
-       .then(async (result:any)=>{
-         console.log(result);
-         let validate = await this.validateUser(result.user);
-         if(validate.status == "success")resolve("success");
-         else resolve(validate.status);
-       })
-       .catch((error) => {
-          resolve("erroLogin");
-          console.log(error);
-       });
-     })
+      .catch((e)=>{
+        resolve("erroLogin");
+        console.log(e);
+      });
+    })
   }
 
   validateUser(user:user){
@@ -77,7 +70,8 @@ export class AuthService {
       firebase.firestore().collection("users").doc(user.uid).set({
         name:user.displayName,
         email: user.email,
-        uid: user.uid
+        uid: user.uid,
+        photo: user.photoURL
       })
       .then(()=>{
         resolve({status:"newUser",user})
@@ -89,11 +83,10 @@ export class AuthService {
   logout(){
      return new Promise((resolve)=>{
       firebase.auth().signOut().then((res)=>{
-        console.log(res);
+        localStorage.removeItem("user");
         resolve(true);
       })
       .catch((e)=>{
-        console.log('err logout',e);
         resolve(false);
       })
     })

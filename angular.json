@@ -39,7 +39,6 @@
               "src/theme.less",
               "src/styles.scss",
               "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
-              
             ],
             "scripts": []
           },
@@ -131,6 +130,10 @@
               "devServerTarget": "shopping-cart:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

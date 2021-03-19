@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
   lastComponentLoaded:string = ""
   loadComponent(component:string){
     this.lastComponentLoaded = component;
+    this.setActiveCommponent();
     this.componentLoad.emit(component);
   }
 
@@ -89,7 +90,11 @@ export class HeaderComponent implements OnInit {
   }
 
   setActiveCommponent(){
-    document.getElementsByClassName("crearP")[0].classList.toggle("ant-menu-item-selected",false);
+    let elements = document.getElementsByClassName("ant-menu-item-selected") ;
+    for(let i in elements){
+     if(elements[i].classList)elements[i].classList.toggle("ant-menu-item-selected",false);
+    }
+
     switch(this.lastComponentLoaded){
       case "cart":
         document.getElementsByClassName("cartP")[0].classList.toggle("ant-menu-item-selected",true);

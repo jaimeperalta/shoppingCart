@@ -19,12 +19,12 @@
                                 Cerrar Sesión
                             </li>
 
-                            <li nz-menu-item (click)="showModal()" *ngIf="user.isLoged">
+                            <li nz-menu-item (click)="showModal()" class="crearP" *ngIf="user.isLoged">
                                 <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
                                 Crear Producto
                             </li>
 
-                            <li nz-menu-item (click)="loadComponent('cart')" *ngIf="user.isLoged">
+                            <li nz-menu-item (click)="loadComponent('cart')" class="cartP" *ngIf="user.isLoged">
                                 <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
                                 Carrito de Compras
                             </li>

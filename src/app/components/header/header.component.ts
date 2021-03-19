@@ -53,9 +53,12 @@ export class HeaderComponent implements OnInit {
 
   handleCancel() {
     this.isVisible = false;
+    this.setActiveCommponent();
   }
 
+  lastComponentLoaded:string = ""
   loadComponent(component:string){
+    this.lastComponentLoaded = component;
     this.componentLoad.emit(component);
   }
 
@@ -70,7 +73,7 @@ export class HeaderComponent implements OnInit {
         let newProudct = await this.productService.createProduct({...this.validateForm.value, image:this.imageSelect});
         if(newProudct.status == "success") {
           this.message.success("Producto creado correctamente");
-          document.getElementsByClassName("homeP")[0].classList.toggle("ant-menu-item-selected",true);
+          this.setActiveCommponent();
           this.evtService.setEvent("reloadProducts");
           this.isVisible = false;
         }
@@ -82,6 +85,18 @@ export class HeaderComponent implements OnInit {
         this.validateForm.controls[i].markAsDirty();
         this.validateForm.controls[i].updateValueAndValidity();
       }
+    }
+  }
+
+  setActiveCommponent(){
+    document.getElementsByClassName("crearP")[0].classList.toggle("ant-menu-item-selected",false);
+    switch(this.lastComponentLoaded){
+      case "cart":
+        document.getElementsByClassName("cartP")[0].classList.toggle("ant-menu-item-selected",true);
+        break;
+      default:
+          document.getElementsByClassName("homeP")[0].classList.toggle("ant-menu-item-selected",true);
+        break;
     }
   }
 
